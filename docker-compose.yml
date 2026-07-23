@@ -1,0 +1,19 @@
+services:
+  axonserver-1:
+    image: docker.axoniq.io/axoniq/axonserver:2026.0.2
+    pull_policy: always
+    hostname: axonserver-1
+    environment:
+      - axoniq_platform_authentication=${AXONIQ_PLATFORM_AUTHENTICATION}
+    ports:
+      - '8024:8024'
+      - '8124:8124'
+      - '8224:8224'
+    networks:
+      - axon-server
+# A licsense file is required to run AxonServer if you are not connecting to Axoniq PLatform
+#    volumes:
+#      - ./axoniq.license:/axonserver/config/axoniq.license:ro
+
+networks:
+  axon-server:
