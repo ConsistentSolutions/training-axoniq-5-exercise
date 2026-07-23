@@ -7,6 +7,14 @@ read model (projections, queries).
 Each exercise ships with a **failing test that is the specification**. Your job is to make it pass by
 filling in the `// TODO (Exercise N)` markers in the source. Nothing else needs to change.
 
+The exercises will fully implement the following event model:
+
+Normal flow:
+![img.png](event_model_1.png)
+
+Suspended member can't request a bike:
+![img_1.png](event_model_2.png)
+
 Do them in order — 2 evolves the events that 3 reads, and 1 adds an event that 3 reads.
 
 Run one exercise's test at a time, e.g.:
