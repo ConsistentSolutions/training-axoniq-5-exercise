@@ -7,7 +7,7 @@ read model (projections, queries).
 Each exercise ships with a **failing test that is the specification**. Your job is to make it pass by
 filling in the `// TODO (Exercise N)` markers in the source. Nothing else needs to change.
 
-Do them in order — 4 evolves the events that 7 reads, and 1 adds an event that 7 reads.
+Do them in order — 2 evolves the events that 3 reads, and 1 adds an event that 3 reads.
 
 Run one exercise's test at a time, e.g.:
 
