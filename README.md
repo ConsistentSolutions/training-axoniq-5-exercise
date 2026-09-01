@@ -1,6 +1,32 @@
 # Bike Rental — AxonIQ Training
 
-A Spring Boot application demonstrating event-sourced bike rental with AxonIQ Framework 5.
+A Spring Boot application demonstrating an event-sourced bike rental system built with AxonIQ
+Framework 5. It is the baseline for a hands-on training: a small but complete CQRS / event-sourced
+slice that you extend through the exercises in [`EXERCISES.md`](EXERCISES.md).
+
+## The domain
+
+Members register and can be suspended. Bikes are registered at a location. A member requests a bike,
+rides it, and returns it. Two read models answer different questions: which bikes are available at a
+location, and what a member has rented.
+
+## How it is structured
+
+The code is split by bounded context and, within each, by the CQRS write/read sides:
+
+- `bikerental/api` — the messages: `command`, `event`, and `query` records shared between sides.
+- `bikerental/write/...` — command handlers and event-sourced entities (`BikeState`, `MemberState`)
+  that make decisions and append events. `TripCommandHandler` shows the AF5 Dynamic Consistency
+  Boundary: one handler sourcing several entities to decide.
+- `bikerental/query/...` — projections that build JPA read models from the event stream and answer
+  queries (`AvailableBikesProjection`, `RentalHistoryProjection`).
+- `bikerental/ui` — `RentalController`, a thin REST layer over the command and query gateways.
+
+## Training exercises
+
+The exercises in [`EXERCISES.md`](EXERCISES.md) walk you through every part of the application — write
+model, events, read model — and finish with a self-directed bonus. Exercises 1–3 come with a failing
+test that is the specification; Exercise 4 and the bonus give you only the requirement. Start there.
 
 ## Prerequisites
 
