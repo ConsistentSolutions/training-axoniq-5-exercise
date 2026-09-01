@@ -4,8 +4,12 @@ These exercises extend the bike-rental baseline so you touch every part of an Ax
 event-sourced application: the write model (commands, event-sourced entities, DCB), events, and the
 read model (projections, queries).
 
-Each exercise ships with a **failing test that is the specification**. Your job is to make it pass by
-filling in the `// TODO (Exercise N)` markers in the source. Nothing else needs to change.
+Exercises 1–3 ship with a **failing test that is the specification**. Your job is to make it pass by
+filling in the `// TODO (Exercise N)` markers in the source.
+
+Exercise 4 is different: there is **no scaffolding** — no TODO markers, no command/event/query classes,
+no test. You get the requirement and nothing else. Design the messages, the handlers, any read model,
+the REST endpoint, and the test that proves it, all yourself.
 
 The exercises will fully implement the following event model:
 
@@ -15,7 +19,8 @@ Normal flow:
 Suspended member can't request a bike:
 ![img_1.png](event_model_2.png)
 
-Do them in order — 2 evolves the events that 3 reads, and 1 adds an event that 3 reads.
+Do them in order — 2 evolves the events that 3 reads, 1 adds an event that 3 reads, and 4 builds on all
+three.
 
 Run one exercise's test at a time, e.g.:
 
@@ -88,3 +93,21 @@ and query — a different question needs a different read model.
 `FindRentalHistory` query, and a `/members/{memberId}/rentals` endpoint.
 
 > Depends on the `memberId` from Exercise 2 and the `BikeReturned` event from Exercise 1.
+
+---
+
+## Exercise 4 — One bike per member
+
+**Concept:** enforcing a business rule that spans a member's whole rental lifecycle.
+
+**The requirement:**
+
+> A member may hold only one bike at a time. While a member has a bike out, any further `RequestBike`
+> for that member is rejected with `IllegalStateException("Member already has a bike")`. Once the bike
+> is returned, the member can request again.
+
+![event_model_3.png](event_model_3.png)
+
+That is the whole exercise. There are no TODO markers, no new classes, and no test provided — write
+the test that pins down this rule yourself, and don't break the tests that already pass. Do it after
+Exercises 1–3.
