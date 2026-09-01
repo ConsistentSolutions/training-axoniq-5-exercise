@@ -111,3 +111,24 @@ and query — a different question needs a different read model.
 That is the whole exercise. There are no TODO markers, no new classes, and no test provided — write
 the test that pins down this rule yourself, and don't break the tests that already pass. Do it after
 Exercises 1–3.
+
+---
+
+## Bonus Exercise — A maintenance context
+
+**Concept:** a new bounded context alongside reservation and membership, with its own language
+(defects, servicing, mechanics), its own events, and its own model. It also introduces automation: the
+system reacting to what has happened by starting the next step itself, instead of waiting for a command.
+
+**What the context should cover:**
+
+- A mechanic can report a defect on a bike and, once serviced, put it back on the road.
+- A bike under maintenance cannot be requested; once back in service it can be again.
+- Maintenance also happens on its own: after 20 rentals, a bike is automatically
+  pulled off the road until a mechanic clears it.
+- A REST endpoint aimed at mechanics can show them all the bikes that need servicing or are in service.
+
+**Design it first.** Create the event model, then implement it in code. There is no single correct solution 
+for this exercise.
+
+No scaffolding at all — no classes, no test, no diagram. Do it after Exercise 4.
